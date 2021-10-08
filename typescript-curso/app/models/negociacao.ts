@@ -1,25 +1,25 @@
 export class Negociacao {
-    #data;
-    #qtd;
-    #valor;
+    private _data;
+    private _qtd;
+    private _valor;
 
     constructor(data, qtd, valor){
-        this.#data = data;
-        this.#qtd = qtd;
-        this.#valor = valor;
+        this._data = data;
+        this._qtd = qtd;
+        this._valor = valor;
     }
 
     get data(){
-        return this.#data
+        return this._data
     }
 
     get qtd(){
-        return this.#qtd
+        return this._qtd
     }
 
     get valor(){
-        return this.#valor
+        return this._valor
     }
 
-    get volume(){return this.#qtd * this.#valor}
+    get volume(){return this._qtd * this._valor}
 }
