@@ -1,4 +1,3 @@
-const { Error } = require('sequelize/types')
 const Modelo = require('./modeloTabelaFornecedor')
 module.exports = {
     listar(){
