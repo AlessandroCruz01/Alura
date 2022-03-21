@@ -1,0 +1,15 @@
+{
+  "name": "nodejs-criandoprimeiralib",
+  "version": "1.0.0",
+  "description": "Vamos começar o nosso primeiro projeto em Node mas antes de meter a mão no código, vamos dar uma olhada no problema, no que precisa resolver, é sempre o ponto de partida.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "4.0"
+  }
+}
