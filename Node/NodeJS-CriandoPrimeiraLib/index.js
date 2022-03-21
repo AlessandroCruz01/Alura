@@ -27,7 +27,7 @@ function extraiLinks(texto){
 async function pegarArquivo(file){
     try{ //Tenta
         const text = await fs.promises.readFile(file, 'utf-8')
-        console.log(extraiLinks(text))
+        return (extraiLinks(text))
     } catch(err) { //Se nao der pegue o erro
         trataErro(err)
     }
@@ -59,4 +59,6 @@ async function pegarArquivo(file){
 //     })
 // }
 
-pegarArquivo('./arquivos/texto1.md')
+// pegarArquivo('./arquivos/texto1.md')
+
+module.exports = pegarArquivo
