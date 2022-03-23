@@ -1,5 +1,6 @@
 import express from "express";
 import db from "../config/dbConnect.js";
+import livros from './models/Livro.js'
 
 //Teste de conexao ao db
 db.on('error', console.log.bind(console, 'Erro de conexao'))
@@ -10,19 +11,20 @@ db.once('open', () => {
 const app = express()
 app.use(express.json())//Para interpretar json
 
-
-const livros = [
-    {id: 1, "titulo": "Sr dos aneis"},
-    {id: 2, "titulo": "Chihiro"}
-]
+// const livros = [
+//     {id: 1, "titulo": "Sr dos aneis"},
+//     {id: 2, "titulo": "Chihiro"}
+// ]
 
 app.get('/', (req, res)=> {
     res.status(200).send('Curso Node')
 })
 
-
 app.get('/livros', (req, res) => {
-    res.status(200).json(livros)
+    livros.find((err, livros)=>{
+        res.status(200).json(livros)//traz tudo
+    }) 
+ 
 })
 
 app.get('/livros/:id', (req, res) => {
