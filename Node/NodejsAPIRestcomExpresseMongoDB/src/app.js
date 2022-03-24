@@ -13,27 +13,4 @@ app.use(express.json())//Para interpretar json
 routes(app)
 
 
-// app.post('/livros', (req,res) => {
-//     livros.push(req.body)
-//     res.status(201).send('Cadastrado')
-// })
-
-// app.put('/livros/:id', (req, res) => {
-//     const index = buscaLivro(req.params.id)
-//     livros[index].titulo = req.body.titulo
-//     res.json(livros)
-// })
-// //funcao para buscar o livro por id
-// function buscaLivro(id){
-//     return livros.findIndex(livros => livros.id == id)
-// }
-
-// app.delete('/livros/:id', (req, res) => {
-//     let {id} = req.params
-//     const index = buscaLivro(id)
-//     livros.splice(index, 1)
-//     res.send(`Livro ${id} excluido`)
-
-// })
-
 export default app
