@@ -2,15 +2,19 @@ import livros from "../models/Livro.js"
 
 class LivroController {
     static listarLivros = (req, res) => {
-        livros.find((err, livros)=>{
-            res.status(200).json(livros)//traz tudo
+        livros.find()
+            .populate('autor')
+            .exec((err, livros)=>{
+                res.status(200).json(livros)//traz tudo
         }) 
     }
 
     static buscarLivroId = (req,res) => {
         const id = req.params.id
 
-        livros.findById(id, (err, livros) => {
+        livros.findById(id)
+        .populate('autor', 'nome')
+        .exec((err, livros) => {
             err ? res.status(400).send({message: `Erro: ${err}`}) : res.status(200).send(livros)
         })
 
@@ -41,6 +45,13 @@ class LivroController {
         livros.findByIdAndDelete(id,(err) => {
             err ? res.status(500).send({message: `Erro: ${err}`}) : res.status(200).send({message: 'Livro removido'})
 
+        })
+    }
+
+    static listarLivrosEditora = (req, res) => {
+        const editora = req.query.editora
+        livros.find({"editora": editora}, {}, (err, livros) => {
+            err ? res.status(400).send({message: `Erro: ${err}`}) : res.status(200).send(livros)
         })
     }
 
