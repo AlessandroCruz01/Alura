@@ -1,13 +1,7 @@
-import express from 'express'
-import bodyParser from 'body-parser'
+const express = require('express')
+const routes = require('./routes')
 
 const app = express()
-app.use(bodyParser.json())// Tudo que chega converte pra json
+routes(app)
 
-const port = 3000
-
-app.get('/', (req, res) => {
-    res.status(200).send('Hello World')
-})
-
-app.listen(port, console.log('Executando...'))
+app.listen(3000, console.log('Executando...'))
