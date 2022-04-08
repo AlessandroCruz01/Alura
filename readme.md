@@ -1,20 +1,5 @@
 # COLEÇÃO DE CURSOS ALURA
 
-## :hammer_and_wrench: Tecnologias
-
-<div align="left">
-   <a href="https://styled-components.com/" target="_blank">
-    <img src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white" alt="Styled Components Badge"/>
-  </a>
-   <a href="https://www.typescriptlang.org/" target="_blank">
-    <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" alt="Typescript Badge"/>
-  </a>
-  <a href="https://www.typescriptlang.org/" target="_blank">
-    <img src="https://img.shields.io/badge/react-%2307ACC.svg?style=for-the-badge&logo=react&logoColor=black" alt="React Badge"/>
-  </a>
-
-</div>
-
 ## :rocket: Abra a pasta onde se econtram todos os projetos
 
 #### 💻 Para rodar os projetos você vai precisar:
