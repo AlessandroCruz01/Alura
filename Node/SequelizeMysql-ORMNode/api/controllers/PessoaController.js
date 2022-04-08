@@ -1,10 +1,21 @@
 const db = require('../models')
 
 class PessoaController {
-    static async pegaTodos(req, res){
+    static async getAllPersons(req, res){
         try {   
-            const todasAsPessoas = await db.Pessoas.findAll()
+            const todasAsPessoas = await db.Pessoas.scope('all').findAll()
             return res.status(200).json(todasAsPessoas)
+            
+        } catch (error) {
+            return res.status(500).json(error.message)
+        }
+
+    }
+
+    static async getAtivos(req, res){
+        try {   
+            const activePersons = await db.Pessoas.findAll()
+            return res.status(200).json(activePersons)
             
         } catch (error) {
             return res.status(500).json(error.message)
@@ -43,7 +54,7 @@ class PessoaController {
         try {
             await db.Pessoas.update(dateUpdate, {where: {id : Number(id)}})
             const att = await db.Pessoas.findOne({where : {id: Number(id)}})
-            return res.status(201).json({message: att})
+            return res.status(201).json({message:`${att}`})
         } catch (error) {
             return res.status(500).json(error.message)
         }
@@ -57,6 +68,16 @@ class PessoaController {
         } catch (error) {
             return res.status(500).json(error.message)
             
+        }
+    }
+
+    static async restorePeople(req, res){
+        const { id } = req.params
+        try {
+            await db.Pessoas.restore({where: {id: Number(id)}})
+            return res.status(201).json({message: `Id ${id} Restaurado!`})
+        } catch (error) {
+            return res.status(500).json(error.message)
         }
     }
 
@@ -112,6 +133,20 @@ class PessoaController {
         try {
             await db.Matriculas.destroy({where : {id: Number(idMatricula)}})
             return res.status(201).json({message: `Id ${idMatricula} excluido!`})
+        } catch (error) {
+            return res.status(500).json(error.message)
+            
+        }
+    }
+
+    static async getMatriculas(req, res){
+        const {estudanteId} = req.params
+
+        try {
+            // const matriculas = await db.Matriculas.findAll({where : {estudante_id: Number(idEstudante)}})
+            const person = await db.Pessoas.findOne({ where : { id: Number(estudanteId) } })
+            const matriculas = await person.getAulasMatriculadas()
+            return res.status(200).json({matriculas})
         } catch (error) {
             return res.status(500).json(error.message)
             
