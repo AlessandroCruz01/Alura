@@ -33,18 +33,19 @@ module.exports = (sequelize, DataTypes) => {
       //Define o padrao - é posto por padrao, nao precisa ser posto no controller
       where: { ativo: true }
     },
-    scopes: {
-      all: {where: {}}
-      // Quantos escopos forem necessarios, sobscreve o padrao e tem que ser chamados no controller.
-    }
+    // scopes: {
+    //   all: {where: {}}
+    //   // Quantos escopos forem necessarios, sobscreve o padrao e tem que ser chamados no controller.
+    // }
   });
 
   Pessoas.associate = function(models) {
     Pessoas.hasMany(models.Turmas, { foreignKey: 'docente_id'})
+
     Pessoas.hasMany(models.Matriculas, { 
       foreignKey: 'estudante_id', 
       scope: {status: 'confirmado'},
-      as: 'getAulasMatriculadas' //o escopo vai com esse nome
+      as: 'aulasMatriculadas' //o escopo vai com esse nome
     })
   };
   
