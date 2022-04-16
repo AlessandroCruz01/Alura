@@ -1,12 +1,19 @@
 // controllers/TurmaController.js
 
 const db = require('../models')
+const sequelize = require('sequelize')
+const Op = sequelize.Op
 
 class TurmaController {
 
     static async pegaTodasAsTurmas(req, res) {
+      const {data_inicial, data_final} = req.query
+      const where = {}
+      data_inicial || data_final ? where.data_inicio = {} : null //data_inicio = coluna do bd
+      data_inicial ? where.data_inicio[Op.gte] = data_inicial : null
+      data_final ? where.data_inicio[Op.gte] = data_final : null
       try {
-        const todasAsTurmas = await db.Turmas.findAll()
+        const todasAsTurmas = await db.Turmas.findAll({ where })
         return res.status(200).json(todasAsTurmas)
       } catch (error) {
         return res.status(500).json(error.message);
