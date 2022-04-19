@@ -33,10 +33,10 @@ module.exports = (sequelize, DataTypes) => {
       //Define o padrao - é posto por padrao, nao precisa ser posto no controller
       where: { ativo: true }
     },
-    // scopes: {
-    //   all: {where: {}}
-    //   // Quantos escopos forem necessarios, sobscreve o padrao e tem que ser chamados no controller.
-    // }
+    scopes: {
+      all: {where: {}}
+      // Quantos escopos forem necessarios, sobscreve o padrao e tem que ser chamados no controller.
+    }
   });
 
   Pessoas.associate = function(models) {
